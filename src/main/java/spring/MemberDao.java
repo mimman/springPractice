@@ -15,6 +15,11 @@ public class MemberDao {
 	public void insert(Member member){
 		member.setId(++nextId);
 		map.put(member.getEmail(),member);
+		System.out.println(member.getEmail()+member.getId()+member.getName()+member.getPassword()+member.getRegisterDate());
+		
+		
+		
+		
 	}
 	
 	public void update(Member member){
@@ -22,6 +27,7 @@ public class MemberDao {
 	}
 	
 	public Collection<Member> selectAll(){
+		System.out.println(map.size());
 		return map.values();
 	}
 }

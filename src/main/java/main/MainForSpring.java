@@ -12,6 +12,8 @@ import spring.AlreadyExistingMemberException;
 import spring.Assembler;
 import spring.ChangePasswordService;
 import spring.IdPasswordNotMachingException;
+import spring.MemberInfoPrinter;
+import spring.MemberListPrinter;
 import spring.MemberNotFoundException;
 import spring.MemberRegisterService;
 import spring.RegisterRequest;
@@ -39,12 +41,26 @@ public class MainForSpring {
 				processChangeCommand(command.split(" "));
 				continue;
 			}
-			
+			//모든 홰원정보 출력
+			else if(command.startsWith("list")){
+				processListCommand();
+				continue;
+			}
+			//지정한 회원정보 출력
+			else if(command.startsWith("info")){
+				processInfoCommand(command.split(" "));
+				continue;
+			}
 			printHelp();
 		}
 
 	}
 	
+	
+
+
+
+
 	public static void printHelp(){
 		System.out.println();
 		System.out.println("잘못된 명령입니다. 아래 명령어 사용법을 확인하세요");
@@ -80,7 +96,7 @@ public class MainForSpring {
 	}
 	
 	private static void processChangeCommand(String[] args){
-		if(args.length != 5){
+		if(args.length != 4){
 			printHelp();
 			return;
 		}
@@ -95,6 +111,26 @@ public class MainForSpring {
 		}catch(IdPasswordNotMachingException err){
 			System.out.println("이메일과 암호가 일치하지 않습니다.\n");
 		}
+		
+	}
+	
+	private static void processListCommand() {
+		System.out.println("리스트 커맨드 작동");
+		MemberListPrinter listPrinter = ctx.getBean("listPrinter", MemberListPrinter.class);
+		listPrinter.selectAll();
+		
+	}
+	
+
+	private static void processInfoCommand(String[] args) {
+		if(args.length != 2){
+			printHelp();
+			return;
+		}
+		
+		MemberInfoPrinter infoPrinter = ctx.getBean("infoPrinter",MemberInfoPrinter.class);
+		infoPrinter.printMemberInfo(args[1]);
+				
 		
 	}
 }
