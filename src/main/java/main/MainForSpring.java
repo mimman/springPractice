@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+
 
 import spring.AlreadyExistingMemberException;
 import spring.Assembler;
@@ -23,6 +25,7 @@ public class MainForSpring {
 	
 	public static void main(String[] args) throws IOException {
 		ctx = new FileSystemXmlApplicationContext("classpath:AppCtx.xml");
+		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		while(true){
 			System.out.println("명령어를 입력하세요");

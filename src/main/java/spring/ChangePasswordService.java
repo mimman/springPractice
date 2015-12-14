@@ -2,10 +2,15 @@ package spring;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("pwdSvc")
 public class ChangePasswordService {
 	private MemberDao memberDao;
 	
 	public ChangePasswordService(){}
+	@Autowired(required=false)
 	public ChangePasswordService(MemberDao memberDao){
 		this.memberDao = memberDao;
 	}
