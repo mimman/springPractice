@@ -2,14 +2,21 @@ package spring;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+
 public class MemberRegisterService {
 	private MemberDao memberDao;
 	
 	public MemberRegisterService(){}
+	
+	@Autowired
 	public MemberRegisterService(MemberDao memberDao){
 		this.memberDao = memberDao;
 	}
 	
+
 	public void regist(RegisterRequest req){
 		Member member = memberDao.selectByEmail(req.getEmail());
 		if(member != null){

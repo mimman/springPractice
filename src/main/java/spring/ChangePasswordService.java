@@ -2,10 +2,13 @@ package spring;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class ChangePasswordService {
 	private MemberDao memberDao;
 	
 	public ChangePasswordService(){}
+	@Autowired
 	public ChangePasswordService(MemberDao memberDao){
 		this.memberDao = memberDao;
 	}
